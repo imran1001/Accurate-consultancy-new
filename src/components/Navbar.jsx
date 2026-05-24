@@ -45,7 +45,8 @@ const Navbar = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+        {/* INCREASED NAVBAR HEIGHT HERE (changed h-20 to h-24 to fit bigger logo) */}
+        <div className="flex justify-between items-center h-24">
           
           {/* Logo Section - Enhanced */}
           <button
@@ -53,14 +54,15 @@ const Navbar = () => {
             className="flex items-center space-x-3 group focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 focus:ring-offset-blue-950 rounded-lg px-2 py-1 -ml-2 transition-all"
             aria-label="Accurate Consultancy Home"
           >
-            <div className="relative">
+            <div className="relative flex items-center">
               <img 
                 src={logo} 
                 alt="Accurate Consultancy" 
-                className="h-14 w-auto object-contain transform group-hover:scale-105 transition-transform duration-300 drop-shadow-lg"
+                {/* INCREASED LOGO SIZE HERE (changed from h-14 to h-20) */}
+                className="h-20 w-auto object-contain transform group-hover:scale-105 transition-transform duration-300 drop-shadow-lg"
               />
             </div>
-            <div className="hidden sm:block">
+            <div className="hidden sm:block text-left">
               <div className="text-xl font-bold text-white tracking-tight leading-tight group-hover:text-amber-400 transition-colors duration-300">
                 ACCURATE
               </div>
@@ -70,7 +72,7 @@ const Navbar = () => {
             </div>
           </button>
 
-          {/* Desktop Navigation - Enhanced Spacing */}
+          {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-10">
             {navLinks.map((item) => (
               <button
@@ -84,7 +86,7 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* CTA Button - Premium Enhanced */}
+          {/* CTA Button */}
           <div className="hidden md:flex items-center">
             <button
               onClick={() => scrollToSection('consultation')}
@@ -97,7 +99,7 @@ const Navbar = () => {
             </button>
           </div>
 
-          {/* Mobile Menu Button - Enhanced */}
+          {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="lg:hidden text-white p-2.5 hover:bg-blue-900 rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-amber-400"
@@ -113,7 +115,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu - Enhanced Animation */}
+      {/* Mobile Menu */}
       <div 
         className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
           mobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
