@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Menu, X, Globe, ChevronRight } from 'lucide-react';
 import { useScrollEffect } from '@hooks/useScrollEffect';
+import logo from '../assets/logo.png'; // ◄ Step 2A: Logo import added here!
 
 const NAV_LINKS = ['Services', 'Destinations', 'About', 'Contact'];
 
@@ -24,26 +25,17 @@ export default function Navbar() {
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
       >
         <div className="flex items-center justify-between h-20">
-          {/* ── Logo ─────────────────────────────────── */}
-          <a
-            href="#"
-            aria-label="Accurate Consultancy — Home"
-            className="flex items-center gap-3 group"
-          >
-            <div className="w-12 h-12 bg-gradient-to-br from-amber-600 to-yellow-500 rounded-xl
-                            flex items-center justify-center shadow-gold shrink-0
-                            group-hover:scale-105 transition-transform duration-300">
-              <span className="text-2xl font-bold text-white font-display leading-none">A</span>
-            </div>
-            <div className="hidden sm:block">
-              <p className="text-base font-bold text-white tracking-widest uppercase leading-tight">
-                Accurate
-              </p>
-              <p className="text-[10px] text-amber-400 tracking-[0.25em] uppercase font-medium">
-                Consultancy
-              </p>
-            </div>
-          </a>
+          
+          {/* ── Logo Section (Step 2B: Now uses your image) ─────────────────── */}
+          <div className="flex-shrink-0 z-50">
+            <a href="/" className="flex items-center group" aria-label="Accurate Consultancy Home">
+              <img 
+                src={logo} 
+                alt="Accurate Consultancy Logo" 
+                className="h-12 md:h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105" 
+              />
+            </a>
+          </div>
 
           {/* ── Desktop Links ─────────────────────────── */}
           <ul

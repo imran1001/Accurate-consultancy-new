@@ -1,201 +1,122 @@
-import {
-  MapPin, Phone, Mail,
-  Facebook, Linkedin, Instagram, Twitter,
-  ChevronRight, Globe,
-} from 'lucide-react';
+import { useState } from 'react';
+import { Menu, X, Globe, ChevronRight } from 'lucide-react';
+import { useScrollEffect } from '@hooks/useScrollEffect';
+import logo from '../assets/logo.png'; // ◄ Step 2A: Logo import added here!
 
-const QUICK_LINKS = [
-  'About Us', 'Services', 'Destinations',
-  'Success Stories', 'Blog', 'Contact',
-];
+const NAV_LINKS = ['Services', 'Destinations', 'About', 'Contact'];
 
-const SERVICES_LINKS = [
-  'Visit Visa',    'Work Visa',        'Study Abroad',
-  'Skilled Immigration', 'Business Immigration', 'Family Visa',
-];
+export default function Navbar() {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const scrolled = useScrollEffect(40);
 
-const SOCIAL = [
-  { Icon: Facebook,  href: '#', label: 'Facebook'  },
-  { Icon: Linkedin,  href: '#', label: 'LinkedIn'  },
-  { Icon: Instagram, href: '#', label: 'Instagram' },
-  { Icon: Twitter,   href: '#', label: 'Twitter'   },
-];
-
-export default function Footer() {
-  const year = new Date().getFullYear();
+  const closeMobile = () => setMobileOpen(false);
 
   return (
-    <footer
-      id="contact"
-      className="bg-blue-950 text-white pt-16 pb-8 px-4 sm:px-6 lg:px-8"
-      aria-label="Site footer"
+    <header
+      role="banner"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled || mobileOpen
+          ? 'bg-blue-950 shadow-xl border-b border-amber-600/20'
+          : 'bg-blue-950/90 backdrop-blur-md border-b border-amber-600/10'
+      }`}
     >
-      <div className="max-w-7xl mx-auto">
-        {/* ── Main Grid ─────────────────────────────── */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-14">
-
-          {/* Brand Column */}
-          <div className="lg:col-span-2">
-            {/* Logo */}
-            <a
-              href="#"
-              aria-label="Accurate Consultancy — Home"
-              className="flex items-center gap-3 mb-6 group w-fit"
-            >
-              <div
-                className="w-12 h-12 bg-gradient-to-br from-amber-600 to-yellow-500
-                            rounded-xl flex items-center justify-center shadow-gold
-                            group-hover:scale-105 transition-transform duration-300"
-              >
-                <span className="text-2xl font-bold text-white font-display leading-none">
-                  A
-                </span>
-              </div>
-              <div>
-                <p className="text-base font-bold tracking-widest uppercase leading-tight">
-                  Accurate Consultancy
-                </p>
-                <p className="text-[10px] text-amber-400 tracking-[0.25em] uppercase font-medium">
-                  Visa &amp; Travel Immigration Services
-                </p>
-              </div>
+      <nav
+        aria-label="Main navigation"
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+      >
+        <div className="flex items-center justify-between h-20">
+          
+          {/* ── Logo Section (Step 2B: Now uses your image) ─────────────────── */}
+          <div className="flex-shrink-0 z-50">
+            <a href="/" className="flex items-center group" aria-label="Accurate Consultancy Home">
+              <img 
+                src={logo} 
+                alt="Accurate Consultancy Logo" 
+                className="h-12 md:h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105" 
+              />
             </a>
-
-            <p className="text-blue-200/70 leading-relaxed text-sm max-w-sm mb-6">
-              Your trusted partner in global immigration — delivering premium visa
-              services with expertise, integrity, and genuine care for every client.
-            </p>
-
-            {/* Social Links */}
-            <div className="flex gap-3">
-              {SOCIAL.map(({ Icon, href, label }) => (
-                <a
-                  key={label}
-                  href={href}
-                  aria-label={label}
-                  className="w-10 h-10 bg-blue-900 hover:bg-amber-600 rounded-full
-                             flex items-center justify-center
-                             transition-all duration-300 hover:scale-110"
-                >
-                  <Icon size={17} aria-hidden="true" />
-                </a>
-              ))}
-            </div>
           </div>
 
-          {/* Quick Links */}
-          <nav aria-label="Quick links">
-            <h3 className="text-sm font-bold tracking-[0.2em] uppercase text-amber-400 mb-6">
-              Quick Links
-            </h3>
-            <ul className="space-y-2.5">
-              {QUICK_LINKS.map((link) => (
-                <li key={link}>
-                  <a
-                    href="#"
-                    className="flex items-center gap-1.5 text-blue-200/70 hover:text-amber-400
-                               text-sm transition-colors duration-200 group"
-                  >
-                    <ChevronRight
-                      size={14}
-                      className="shrink-0 group-hover:translate-x-0.5 transition-transform"
-                      aria-hidden="true"
-                    />
-                    {link}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          {/* Contact Info */}
-          <div>
-            <h3 className="text-sm font-bold tracking-[0.2em] uppercase text-amber-400 mb-6">
-              Contact Us
-            </h3>
-            <address className="not-italic space-y-4">
-              {/* Phone */}
-              <div className="flex items-start gap-3">
-                <Phone
-                  className="text-amber-400 shrink-0 mt-0.5"
-                  size={17}
-                  aria-hidden="true"
-                />
-                <div className="text-sm text-blue-200/70 space-y-0.5">
-                  <a
-                    href="tel:+923160285386"
-                    className="block hover:text-amber-400 transition-colors"
-                  >
-                    +92 316 0285386
-                  </a>
-                  <a
-                    href="tel:+923030411114"
-                    className="block hover:text-amber-400 transition-colors"
-                  >
-                    +92 303 0411114
-                  </a>
-                </div>
-              </div>
-
-              {/* Email */}
-              <div className="flex items-start gap-3">
-                <Mail
-                  className="text-amber-400 shrink-0 mt-0.5"
-                  size={17}
-                  aria-hidden="true"
-                />
+          {/* ── Desktop Links ─────────────────────────── */}
+          <ul
+            role="list"
+            className="hidden lg:flex items-center gap-8"
+          >
+            {NAV_LINKS.map((item) => (
+              <li key={item}>
                 <a
-                  href="mailto:info@accurate-consultancy.com"
-                  className="text-sm text-blue-200/70 hover:text-amber-400 transition-colors break-all"
+                  href={`#${item.toLowerCase()}`}
+                  className="relative text-gray-300 hover:text-amber-400 text-sm font-medium
+                             tracking-wide transition-colors duration-300 group"
                 >
-                  info@accurate-consultancy.com
+                  {item}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-400
+                                   transition-all duration-300 group-hover:w-full" />
                 </a>
-              </div>
-
-              {/* Location */}
-              <div className="flex items-start gap-3">
-                <MapPin
-                  className="text-amber-400 shrink-0 mt-0.5"
-                  size={17}
-                  aria-hidden="true"
-                />
-                <span className="text-sm text-blue-200/70">Lahore, Pakistan</span>
-              </div>
-
-              {/* Working Hours */}
-              <div className="flex items-start gap-3">
-                <Globe
-                  className="text-amber-400 shrink-0 mt-0.5"
-                  size={17}
-                  aria-hidden="true"
-                />
-                <span className="text-sm text-blue-200/70">
-                  Mon–Sat: 9:00 AM – 6:00 PM PKT
-                </span>
-              </div>
-            </address>
-          </div>
-        </div>
-
-        {/* ── Bottom Bar ────────────────────────────── */}
-        <div className="border-t border-blue-900 pt-8 flex flex-col md:flex-row
-                        justify-between items-center gap-4">
-          <p className="text-blue-200/50 text-xs">
-            © {year} Accurate Consultancy. All rights reserved.
-          </p>
-          <nav aria-label="Legal links" className="flex gap-6">
-            {['Privacy Policy', 'Terms of Service', 'Cookie Policy'].map((item) => (
-              <a
-                key={item}
-                href="#"
-                className="text-blue-200/50 hover:text-amber-400 text-xs transition-colors"
-              >
-                {item}
-              </a>
+              </li>
             ))}
-          </nav>
+          </ul>
+
+          {/* ── Desktop CTA ───────────────────────────── */}
+          <div className="hidden md:block">
+            <a
+              href="#consultation"
+              className="btn-primary text-sm"
+            >
+              <Globe size={15} />
+              Book Consultation
+              <ChevronRight size={15} />
+            </a>
+          </div>
+
+          {/* ── Mobile Toggle ─────────────────────────── */}
+          <button
+            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-menu"
+            onClick={() => setMobileOpen((v) => !v)}
+            className="lg:hidden text-white p-2 rounded-lg hover:bg-blue-900
+                       transition-colors duration-200 focus-visible:ring-2
+                       focus-visible:ring-amber-400"
+          >
+            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
-      </div>
-    </footer>
+
+        {/* ── Mobile Menu ───────────────────────────── */}
+        <div
+          id="mobile-menu"
+          aria-hidden={!mobileOpen}
+          className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+            mobileOpen ? 'max-h-96 pb-6' : 'max-h-0'
+          }`}
+        >
+          <ul role="list" className="flex flex-col gap-1 pt-2">
+            {NAV_LINKS.map((item) => (
+              <li key={item}>
+                <a
+                  href={`#${item.toLowerCase()}`}
+                  onClick={closeMobile}
+                  className="block px-3 py-2.5 text-gray-300 hover:text-amber-400
+                             hover:bg-blue-900/50 rounded-lg font-medium text-sm
+                             tracking-wide transition-all duration-200"
+                >
+                  {item}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-4 px-3">
+            <a
+              href="#consultation"
+              onClick={closeMobile}
+              className="btn-primary w-full"
+            >
+              Book Consultation
+            </a>
+          </div>
+        </div>
+      </nav>
+    </header>
   );
 }
