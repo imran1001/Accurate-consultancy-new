@@ -17,7 +17,7 @@ const Navbar = () => {
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
-      const offset = 90; // Balanced offset for the larger navbar
+      const offset = 90;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
 
@@ -45,33 +45,21 @@ const Navbar = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Increased navbar desktop height to h-28 so a massive logo fits safely */}
-        <div className="flex justify-between items-center h-24 lg:h-28 transition-all duration-300">
+        <div className="flex justify-between items-center h-24 lg:h-26">
           
-          {/* Logo Section */}
+          {/* Logo Button Container */}
           <button
             onClick={() => scrollToSection('hero')}
-            className="flex items-center space-x-4 group focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 focus:ring-offset-blue-950 rounded-lg px-2 py-1 -ml-2 transition-all"
+            className="flex items-center group focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 focus:ring-offset-blue-950 rounded-lg p-1 -ml-2 transition-all relative z-10"
             aria-label="Accurate Consultancy Home"
           >
-            {/* Expanded container with no limits to allow the logo to expand safely */}
-            <div className="relative flex items-center justify-center">
+            {/* The scale-[1.8] utility forces the image to magnify past its invisible borders */}
+            <div className="relative w-48 sm:w-64 h-16 flex items-center overflow-visible">
               <img 
                 src={logo} 
                 alt="Accurate Consultancy" 
-                className="h-20 sm:h-24 lg:h-26 w-auto object-contain transform group-hover:scale-105 transition-transform duration-300 drop-shadow-xl"
-                style={{ maxHeight: '100%' }}
+                className="h-16 w-auto object-contain scale-[1.8] sm:scale-[2.0] origin-left transform group-hover:scale-[1.9] sm:group-hover:scale-[2.1] transition-transform duration-300 drop-shadow-xl"
               />
-            </div>
-            
-            {/* Text hidden if your logo.png already has 'Accurate Consultancy' typed on it */}
-            <div className="hidden md:block text-left border-l border-white/20 pl-4">
-              <div className="text-2xl font-black text-white tracking-tight leading-tight group-hover:text-amber-400 transition-colors duration-300">
-                ACCURATE
-              </div>
-              <div className="text-[11px] text-amber-400 tracking-[0.25em] uppercase font-bold">
-                CONSULTANCY
-              </div>
             </div>
           </button>
 
