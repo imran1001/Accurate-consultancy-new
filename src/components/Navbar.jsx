@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Menu, X, Globe, ChevronRight } from 'lucide-react';
 import { useScrollEffect } from '@hooks/useScrollEffect';
-import logo from '../assets/logo.png'; // ◄ Step 2A: Logo import added here!
+import logo from '../assets/logo.png'; 
 
 const NAV_LINKS = ['Services', 'Destinations', 'About', 'Contact'];
 
@@ -26,13 +26,13 @@ export default function Navbar() {
       >
         <div className="flex items-center justify-between h-20">
           
-          {/* ── Logo Section (Step 2B: Now uses your image) ─────────────────── */}
-          <div className="flex-shrink-0 z-50">
-            <a href="/" className="flex items-center group" aria-label="Accurate Consultancy Home">
+          {/* ── New Luxury Logo Section ─────────────────── */}
+          <div className="flex-shrink-0 z-50 py-2">
+            <a href="/" className="flex items-center" aria-label="Accurate Consultancy Home">
               <img 
                 src={logo} 
                 alt="Accurate Consultancy Logo" 
-                className="h-12 md:h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105" 
+                className="h-12 sm:h-14 w-auto object-contain transition-transform duration-300 hover:scale-102" 
               />
             </a>
           </div>
