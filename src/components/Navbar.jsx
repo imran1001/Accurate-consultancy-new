@@ -21,15 +21,17 @@ function Navbar() {
       }`}
     >
       <nav aria-label="Main navigation" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        {/* Increased height to h-28 to allow for a larger logo */}
+        <div className="flex items-center justify-between h-28">
           
-          {/* ── Premium AC Shield Logo ─────────────────── */}
-          <div className="flex-shrink-0 z-50 py-1">
+          {/* ── Premium AC Shield Logo (Larger Size) ─────────────────── */}
+          <div className="flex-shrink-0 z-50 py-2">
             <a href="/" className="flex items-center" aria-label="Accurate Consultancy Home">
               <img 
                 src={logo} 
                 alt="Accurate Consultancy Logo" 
-                className="h-14 sm:h-16 w-auto object-contain transition-transform duration-300 hover:scale-105" 
+                // Increased h-20 sm:h-24 for a larger, more prominent logo
+                className="h-20 sm:h-24 w-auto object-contain transition-transform duration-300 hover:scale-105" 
               />
             </a>
           </div>
