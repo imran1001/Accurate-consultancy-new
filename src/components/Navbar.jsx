@@ -17,7 +17,7 @@ const Navbar = () => {
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
-      const offset = 80; // Height of navbar
+      const offset = 90; // Balanced offset for the larger navbar
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
 
@@ -45,26 +45,31 @@ const Navbar = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-24">
+        {/* Increased navbar desktop height to h-28 so a massive logo fits safely */}
+        <div className="flex justify-between items-center h-24 lg:h-28 transition-all duration-300">
           
           {/* Logo Section */}
           <button
             onClick={() => scrollToSection('hero')}
-            className="flex items-center space-x-3 group focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 focus:ring-offset-blue-950 rounded-lg px-2 py-1 -ml-2 transition-all"
+            className="flex items-center space-x-4 group focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 focus:ring-offset-blue-950 rounded-lg px-2 py-1 -ml-2 transition-all"
             aria-label="Accurate Consultancy Home"
           >
-            <div className="relative flex items-center">
+            {/* Expanded container with no limits to allow the logo to expand safely */}
+            <div className="relative flex items-center justify-center">
               <img 
                 src={logo} 
                 alt="Accurate Consultancy" 
-                className="h-20 w-auto object-contain transform group-hover:scale-105 transition-transform duration-300 drop-shadow-lg"
+                className="h-20 sm:h-24 lg:h-26 w-auto object-contain transform group-hover:scale-105 transition-transform duration-300 drop-shadow-xl"
+                style={{ maxHeight: '100%' }}
               />
             </div>
-            <div className="hidden sm:block text-left">
-              <div className="text-xl font-bold text-white tracking-tight leading-tight group-hover:text-amber-400 transition-colors duration-300">
+            
+            {/* Text hidden if your logo.png already has 'Accurate Consultancy' typed on it */}
+            <div className="hidden md:block text-left border-l border-white/20 pl-4">
+              <div className="text-2xl font-black text-white tracking-tight leading-tight group-hover:text-amber-400 transition-colors duration-300">
                 ACCURATE
               </div>
-              <div className="text-[10px] text-amber-400 tracking-[0.2em] uppercase font-semibold">
+              <div className="text-[11px] text-amber-400 tracking-[0.25em] uppercase font-bold">
                 CONSULTANCY
               </div>
             </div>
@@ -76,7 +81,7 @@ const Navbar = () => {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="group relative text-gray-200 hover:text-amber-400 transition-colors duration-300 font-medium text-sm tracking-wide py-2"
+                className="group relative text-gray-200 hover:text-amber-400 transition-colors duration-300 font-semibold text-sm tracking-wide py-2"
               >
                 <span>{item.name}</span>
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-amber-400 to-yellow-500 group-hover:w-full transition-all duration-300"></span>
@@ -88,7 +93,7 @@ const Navbar = () => {
           <div className="hidden md:flex items-center">
             <button
               onClick={() => scrollToSection('consultation')}
-              className="group relative bg-gradient-to-r from-amber-500 to-amber-600 text-white px-7 py-3 rounded-full font-bold text-sm shadow-xl hover:shadow-amber-500/60 transform hover:scale-105 transition-all duration-300 flex items-center space-x-2 overflow-hidden"
+              className="group relative bg-gradient-to-r from-amber-500 to-amber-600 text-white px-7 py-3.5 rounded-full font-bold text-sm shadow-xl hover:shadow-amber-500/60 transform hover:scale-105 transition-all duration-300 flex items-center space-x-2 overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <Globe size={18} className="relative z-10" />
@@ -105,9 +110,9 @@ const Navbar = () => {
             aria-expanded={mobileMenuOpen}
           >
             {mobileMenuOpen ? (
-              <X size={24} className="transition-transform duration-300" />
+              <X size={26} className="transition-transform duration-300" />
             ) : (
-              <Menu size={24} className="transition-transform duration-300" />
+              <Menu size={26} className="transition-transform duration-300" />
             )}
           </button>
         </div>
