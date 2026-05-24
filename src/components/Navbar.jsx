@@ -45,7 +45,7 @@ const Navbar = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-24 lg:h-26">
+        <div className="flex justify-between items-center h-24 lg:h-28">
           
           {/* Logo Button Container */}
           <button
@@ -53,12 +53,11 @@ const Navbar = () => {
             className="flex items-center group focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 focus:ring-offset-blue-950 rounded-lg p-1 -ml-2 transition-all relative z-10"
             aria-label="Accurate Consultancy Home"
           >
-            {/* The scale-[1.8] utility forces the image to magnify past its invisible borders */}
-            <div className="relative w-48 sm:w-64 h-16 flex items-center overflow-visible">
+            <div className="relative flex items-center justify-center">
               <img 
                 src={logo} 
                 alt="Accurate Consultancy" 
-                className="h-16 w-auto object-contain scale-[1.8] sm:scale-[2.0] origin-left transform group-hover:scale-[1.9] sm:group-hover:scale-[2.1] transition-transform duration-300 drop-shadow-xl"
+                className="h-16 sm:h-20 lg:h-24 w-auto object-contain transform group-hover:scale-105 transition-transform duration-300 drop-shadow-xl"
               />
             </div>
           </button>
