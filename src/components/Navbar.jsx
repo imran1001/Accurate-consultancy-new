@@ -7,9 +7,7 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -28,19 +26,18 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-blue-950/95 backdrop-blur-md border-b border-amber-600/20 transition-all duration-300">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        {/* Increased height to 28 for more vertical presence */}
         <div className="flex justify-between items-center h-28">
           
-          {/* Logo Container - Added padding and flex-shrink-0 to prevent compression */}
+          {/* Logo Container */}
           <button
             onClick={() => scrollToSection('hero')}
-            className="flex items-center group focus:outline-none p-2 -ml-2 rounded-lg hover:bg-blue-900/30 transition-colors"
+            className="flex items-center group focus:outline-none p-2 -ml-2 rounded-lg transition-colors"
             aria-label="Accurate Consultancy Home"
           >
             <img 
               src={logo} 
               alt="Accurate Consultancy" 
-              className="h-20 sm:h-24 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              className="h-20 sm:h-24 w-auto object-contain transition-transform duration-300"
             />
           </button>
 
