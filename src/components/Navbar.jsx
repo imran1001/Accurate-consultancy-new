@@ -5,7 +5,7 @@ import logo from '../assets/logo.png';
 
 const NAV_LINKS = ['Services', 'Destinations', 'About', 'Contact'];
 
-export default function Navbar() {
+function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const scrolled = useScrollEffect(40);
 
@@ -131,3 +131,6 @@ export default function Navbar() {
     </header>
   );
 }
+
+// Fixed standard export declaration down here to clear Vercel's build path
+export default Navbar;
