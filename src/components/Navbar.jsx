@@ -26,22 +26,22 @@ function Navbar() {
       >
         <div className="flex items-center justify-between h-20">
           
-          {/* ── Premium Horizontal Brand Layout ─────────────────── */}
+          {/* ── Fixed High-Visibility Blended Logo Section ─────────────────── */}
           <div className="flex-shrink-0 z-50">
             <a href="/" className="flex items-center gap-3 group" aria-label="Accurate Consultancy Home">
-              {/* Your Gold Emblem */}
+              {/* Blends out the dark box automatically */}
               <img 
                 src={logo} 
                 alt="Accurate Consultancy Emblem" 
-                className="h-12 sm:h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105" 
+                className="h-12 sm:h-14 w-auto object-contain mix-blend-screen contrast-125 transition-transform duration-300 group-hover:scale-105" 
               />
               
-              {/* High-Contrast White & Gold Text Branding */}
-              <div className="flex flex-col justify-center border-l border-amber-500/30 pl-3">
-                <span className="text-xl font-black text-white tracking-widest uppercase font-sans leading-none">
+              {/* Clear, High-Contrast Text */}
+              <div className="flex flex-col justify-center border-l border-amber-400/40 pl-3">
+                <span className="text-xl font-black text-white tracking-widest uppercase font-sans leading-none block">
                   Accurate
                 </span>
-                <span className="text-[10px] text-amber-400 tracking-[0.28em] uppercase font-bold mt-1.5 leading-none">
+                <span className="text-[10px] text-amber-400 tracking-[0.28em] uppercase font-bold mt-1.5 leading-none block">
                   Consultancy
                 </span>
               </div>
@@ -132,5 +132,4 @@ function Navbar() {
   );
 }
 
-// Fixed standard export declaration down here to clear Vercel's build path
 export default Navbar;
