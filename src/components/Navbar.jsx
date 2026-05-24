@@ -47,7 +47,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-24 lg:h-28">
           
-          {/* Logo Button Container */}
+          {/* Logo Button Container - Strictly ONE Image Tag */}
           <button
             onClick={() => scrollToSection('hero')}
             className="flex items-center group focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 focus:ring-offset-blue-950 rounded-lg p-1 -ml-2 transition-all relative z-10"
@@ -57,7 +57,7 @@ const Navbar = () => {
               <img 
                 src={logo} 
                 alt="Accurate Consultancy" 
-                className="h-16 sm:h-20 lg:h-24 w-auto object-contain transform group-hover:scale-105 transition-transform duration-300 drop-shadow-xl"
+                className="h-16 sm:h-20 lg:h-24 w-auto object-contain transform group-hover:scale-105 transition-transform duration-300"
               />
             </div>
           </button>
