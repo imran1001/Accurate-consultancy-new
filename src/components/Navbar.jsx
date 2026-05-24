@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Menu, X, Globe, ChevronRight } from 'lucide-react';
 import { useScrollEffect } from '@hooks/useScrollEffect';
-import logo from '../assets/Accurate Logo 2.png'; // Updated path
+import logo from '../assets/logo.png'; 
 
 const NAV_LINKS = ['Services', 'Destinations', 'About', 'Contact'];
 
@@ -23,7 +23,7 @@ function Navbar() {
       <nav aria-label="Main navigation" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           
-          {/* ── Updated AC Shield Logo ─────────────────── */}
+          {/* ── Premium AC Shield Logo ─────────────────── */}
           <div className="flex-shrink-0 z-50 py-1">
             <a href="/" className="flex items-center" aria-label="Accurate Consultancy Home">
               <img 
