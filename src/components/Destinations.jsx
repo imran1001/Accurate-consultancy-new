@@ -1,162 +1,129 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { CheckCircle, ChevronRight } from 'lucide-react';
-import { useIntersectionObserver } from '@hooks/useIntersectionObserver';
 
-const DESTINATIONS = {
-  usa: {
-    name:       'United States',
-    flag:       '🇺🇸',
-    tagline:    'Land of opportunity awaits you',
-    highlights: ['EB-5 Investor Program', 'H-1B Work Visa', 'F-1 Student Visa', 'B1/B2 Tourist Visa'],
-  },
-  uk: {
-    name:       'United Kingdom',
-    flag:       '🇬🇧',
-    tagline:    'Build your future in Britain',
-    highlights: ['Skilled Worker Visa', 'Student Route', 'Innovator Founder', 'Global Talent Visa'],
-  },
-  canada: {
-    name:       'Canada',
-    flag:       '🇨🇦',
-    tagline:    'A world of possibilities up north',
-    highlights: ['Express Entry', 'Provincial Nominee', 'Study Permit', 'Startup Visa'],
-  },
-  australia: {
-    name:       'Australia',
-    flag:       '🇦🇺',
-    tagline:    'Thrive Down Under',
-    highlights: ['Skilled Migration', 'Business Innovation', 'Student Visa', 'Working Holiday'],
-  },
-  uae: {
-    name:       'United Arab Emirates',
-    flag:       '🇦🇪',
-    tagline:    'Gateway to the Gulf',
-    highlights: ['Golden Visa', 'Business Setup', 'Employment Visa', 'Tourist Visa'],
-  },
-  europe: {
-    name:       'Europe',
-    flag:       '🇪🇺',
-    tagline:    'Your European adventure starts here',
-    highlights: ['Schengen Visa', 'Golden Visa Programs', 'EU Blue Card', 'Student Exchange'],
-  },
-  newzealand: {
-    name:       'New Zealand',
-    flag:       '🇳🇿',
-    tagline:    'Paradise and prosperity combined',
-    highlights: ['Skilled Migrant', 'Accredited Employer Work Visa', 'Student Visa', 'Investor Visa'],
-  },
-};
+const Destinations = () => {
+  const [activeDestination, setActiveDestination] = useState('usa');
 
-export default function Destinations() {
-  const [active, setActive] = useState('usa');
-  const [ref, visible] = useIntersectionObserver();
-  const dest = DESTINATIONS[active];
+  const destinations = {
+    usa: {
+      name: 'United States',
+      flag: '🇺🇸',
+      highlights: ['EB-5 Investor Program', 'H-1B Work Visa', 'F-1 Student Visa', 'B1/B2 Tourist Visa']
+    },
+    uk: {
+      name: 'United Kingdom',
+      flag: '🇬🇧',
+      highlights: ['Skilled Worker Visa', 'Student Route', 'Innovator Founder', 'Global Talent Visa']
+    },
+    europe: {
+      name: 'Europe',
+      flag: '🇪🇺',
+      highlights: ['Schengen Visa', 'Golden Visa Programs', 'Blue Card', 'Student Exchange']
+    },
+    uae: {
+      name: 'United Arab Emirates',
+      flag: '🇦🇪',
+      highlights: ['Golden Visa', 'Business Setup', 'Employment Visa', 'Tourist Visa']
+    },
+    canada: {
+      name: 'Canada',
+      flag: '🇨🇦',
+      highlights: ['Express Entry', 'Provincial Nominee', 'Study Permit', 'Startup Visa']
+    },
+    australia: {
+      name: 'Australia',
+      flag: '🇦🇺',
+      highlights: ['Skilled Migration', 'Business Innovation', 'Student Visa', 'Working Holiday']
+    },
+    newzealand: {
+      name: 'New Zealand',
+      flag: '🇳🇿',
+      highlights: ['Skilled Migrant', 'Investor Visa', 'Student Visa', 'Essential Skills']
+    }
+  };
+
+  const scrollToConsultation = () => {
+    const element = document.getElementById('consultation');
+    if (element) {
+      const offset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+    }
+  };
 
   return (
-    <section
-      id="destinations"
-      aria-labelledby="destinations-heading"
-      className="py-24 px-4 sm:px-6 lg:px-8
-                 bg-gradient-to-b from-blue-50/60 to-white"
-    >
-      <div className="max-w-7xl mx-auto" ref={ref}>
-        {/* ── Heading ────────────────────────────────── */}
-        <div className="text-center mb-14">
-          <span className="inline-block text-xs font-bold tracking-[0.3em] uppercase
-                           text-amber-600 mb-4">
-            Where We Work
-          </span>
-          <h2
-            id="destinations-heading"
-            className={`section-heading mb-4 ${visible ? 'animate-fade-up' : 'opacity-0'}`}
-          >
+    <section id="destinations" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-blue-50 to-white">
+      <div className="max-w-7xl mx-auto">
+        
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <div className="inline-block mb-4">
+            <span className="text-amber-600 font-bold text-sm tracking-[0.2em] uppercase">WHERE WE WORK</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold text-blue-950 mb-4">
             Featured Destinations
           </h2>
-          <p className={`section-sub ${visible ? 'animate-fade-up delay-200' : 'opacity-0'}`}>
-            Expert guidance for every major immigration destination worldwide
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Expert guidance for your preferred immigration destination
           </p>
         </div>
 
-        {/* ── Tab Buttons ───────────────────────────── */}
-        <div
-          className={`flex flex-wrap justify-center gap-3 mb-10
-                      ${visible ? 'animate-fade-up delay-300' : 'opacity-0'}`}
-          role="tablist"
-          aria-label="Select a destination"
-        >
-          {Object.entries(DESTINATIONS).map(([key, d]) => (
+        {/* Destination Tabs */}
+        <div className="flex flex-wrap justify-center gap-3 mb-12">
+          {Object.entries(destinations).map(([key, dest]) => (
             <button
               key={key}
-              role="tab"
-              id={`tab-${key}`}
-              aria-selected={active === key}
-              aria-controls={`panel-${key}`}
-              onClick={() => setActive(key)}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold
-                          transition-all duration-300 border focus-visible:outline-none
-                          focus-visible:ring-2 focus-visible:ring-amber-500
-                          ${active === key
-                            ? 'bg-gradient-to-r from-amber-600 to-yellow-500 text-white border-transparent shadow-gold scale-105'
-                            : 'bg-white text-gray-600 border-gray-200 hover:border-amber-300 hover:text-amber-700'
-                          }`}
+              onClick={() => setActiveDestination(key)}
+              className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 flex items-center space-x-2 ${
+                activeDestination === key
+                  ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-white shadow-lg scale-105'
+                  : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200 hover:border-amber-300'
+              }`}
             >
-              <span className="text-xl" aria-hidden="true">{d.flag}</span>
-              <span>{d.name}</span>
+              <span className="text-2xl">{dest.flag}</span>
+              <span>{dest.name}</span>
             </button>
           ))}
         </div>
 
-        {/* ── Destination Panel ─────────────────────── */}
-        <div
-          id={`panel-${active}`}
-          role="tabpanel"
-          aria-labelledby={`tab-${active}`}
-          className={`bg-white rounded-3xl p-8 md:p-12 shadow-2xl border border-amber-200/60
-                      ${visible ? 'animate-fade-up delay-400' : 'opacity-0'}`}
-        >
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 mb-8">
-            <span
-              className="text-6xl sm:text-7xl animate-float shrink-0"
-              aria-hidden="true"
-            >
-              {dest.flag}
-            </span>
+        {/* Active Destination Card */}
+        <div className="bg-white rounded-3xl p-8 md:p-12 shadow-2xl border border-amber-200">
+          <div className="flex items-center space-x-4 mb-8">
+            <div className="text-6xl animate-bounce">{destinations[activeDestination].flag}</div>
             <div>
-              <h3 className="text-3xl md:text-4xl font-display font-bold text-blue-950">
-                {dest.name}
-              </h3>
-              <p className="text-amber-600 font-medium mt-1">{dest.tagline}</p>
+              <h3 className="text-3xl font-bold text-blue-950">{destinations[activeDestination].name}</h3>
+              <p className="text-gray-600 mt-1">Premium Immigration Pathways</p>
             </div>
           </div>
 
-          {/* Highlight grid */}
+          {/* Highlights Grid */}
           <div className="grid sm:grid-cols-2 gap-4 mb-8">
-            {dest.highlights.map((item, i) => (
+            {destinations[activeDestination].highlights.map((highlight, index) => (
               <div
-                key={i}
-                className="flex items-center gap-3 bg-gradient-to-r from-blue-50 to-amber-50
-                           px-5 py-4 rounded-xl border border-amber-200/50
-                           hover:border-amber-400 hover:shadow-md
-                           transition-all duration-300 cursor-default"
+                key={index}
+                className="flex items-center space-x-3 bg-gradient-to-r from-blue-50 to-amber-50 p-4 rounded-xl border border-amber-200/50 hover:border-amber-400 transition-all duration-300 group"
               >
-                <CheckCircle
-                  className="text-amber-600 shrink-0"
-                  size={22}
-                  aria-hidden="true"
-                />
-                <span className="font-semibold text-blue-900 text-sm">{item}</span>
+                <CheckCircle className="text-amber-600 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" size={24} />
+                <span className="font-semibold text-blue-900">{highlight}</span>
               </div>
             ))}
           </div>
 
+          {/* CTA */}
           <div className="flex justify-center">
-            <a href="#consultation" className="btn-navy">
-              Get Expert Consultation
-              <ChevronRight size={18} aria-hidden="true" />
-            </a>
+            <button
+              onClick={scrollToConsultation}
+              className="bg-gradient-to-r from-blue-900 to-blue-800 text-white px-8 py-4 rounded-full font-bold shadow-lg hover:shadow-blue-900/50 transform hover:scale-105 transition-all duration-300 inline-flex items-center space-x-2"
+            >
+              <span>Get Expert Consultation</span>
+              <ChevronRight size={20} />
+            </button>
           </div>
         </div>
       </div>
     </section>
   );
-}
+};
+
+export default Destinations;
