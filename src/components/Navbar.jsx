@@ -26,25 +26,14 @@ function Navbar() {
       >
         <div className="flex items-center justify-between h-20">
           
-          {/* ── Fixed High-Visibility Blended Logo Section ─────────────────── */}
-          <div className="flex-shrink-0 z-50">
-            <a href="/" className="flex items-center gap-3 group" aria-label="Accurate Consultancy Home">
-              {/* Blends out the dark box automatically */}
+          {/* ── Premium Balanced Logo Frame ─────────────────── */}
+          <div className="flex-shrink-0 z-50 py-1">
+            <a href="/" className="flex items-center" aria-label="Accurate Consultancy Home">
               <img 
                 src={logo} 
-                alt="Accurate Consultancy Emblem" 
-                className="h-12 sm:h-14 w-auto object-contain mix-blend-screen contrast-125 transition-transform duration-300 group-hover:scale-105" 
+                alt="Accurate Consultancy Logo" 
+                className="h-14 sm:h-16 w-auto object-contain rounded border border-amber-500/10 shadow-lg shadow-black/20 transition-transform duration-300 hover:scale-103" 
               />
-              
-              {/* Clear, High-Contrast Text */}
-              <div className="flex flex-col justify-center border-l border-amber-400/40 pl-3">
-                <span className="text-xl font-black text-white tracking-widest uppercase font-sans leading-none block">
-                  Accurate
-                </span>
-                <span className="text-[10px] text-amber-400 tracking-[0.28em] uppercase font-bold mt-1.5 leading-none block">
-                  Consultancy
-                </span>
-              </div>
             </a>
           </div>
 
